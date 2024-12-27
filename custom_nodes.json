@@ -230,5 +230,9 @@
   {
     "repo": "https://github.com/pythongosssss/ComfyUI-WD14-Tagger",
     "commit": "d335017"
+  },
+  {
+    "repo": "https://github.com/aria1th/ComfyUI-LogicUtils",
+    "commit": "a12b2e6"
   }
 ]
