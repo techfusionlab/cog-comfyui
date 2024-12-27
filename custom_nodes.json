@@ -226,5 +226,9 @@
   {
     "repo": "https://github.com/ltdrdata/ComfyUI-Manager",
     "commit": "df9ceb0"
+  },
+  {
+    "repo": "https://github.com/pythongosssss/ComfyUI-WD14-Tagger",
+    "commit": "d335017"
   }
 ]
