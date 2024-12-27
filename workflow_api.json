@@ -1,0 +1,451 @@
+{
+  "1": {
+    "inputs": {
+      "seed": [
+        "6",
+        0
+      ],
+      "steps": 30,
+      "cfg": 7,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "37",
+        0
+      ],
+      "positive": [
+        "173",
+        0
+      ],
+      "negative": [
+        "170",
+        0
+      ],
+      "latent_image": [
+        "167",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "6": {
+    "inputs": {
+      "seed": 1020675327435155
+    },
+    "class_type": "Seed (rgthree)",
+    "_meta": {
+      "title": "Seed (rgthree)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "samples": [
+        "1",
+        0
+      ],
+      "vae": [
+        "166",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "12": {
+    "inputs": {
+      "image": "R1H1Kdv3KCyqtqtpQKLNZ_640.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "34": {
+    "inputs": {
+      "model": "wd-v1-4-vit-tagger-v2",
+      "threshold": 0.35,
+      "character_threshold": 0.85,
+      "replace_underscore": false,
+      "trailing_comma": false,
+      "exclude_tags": "realistic,greyscale",
+      "tags": "1girl, solo, breasts, large_breasts, shirt, hat, navel, monochrome, short_sleeves, midriff, belt, pants, blurry, crop_top, helmet, baseball_cap, taut_shirt",
+      "image": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "WD14Tagger|pysssss",
+    "_meta": {
+      "title": "WD14 Tagger 🐍"
+    }
+  },
+  "37": {
+    "inputs": {
+      "weight": 1,
+      "weight_type": "style transfer precise",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only",
+      "model": [
+        "38",
+        0
+      ],
+      "ipadapter": [
+        "38",
+        1
+      ],
+      "image": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": {
+      "title": "IPAdapter Advanced"
+    }
+  },
+  "38": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "166",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter Unified Loader"
+    }
+  },
+  "39": {
+    "inputs": {
+      "image": "https://pub.colorpages.net/output.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "40": {
+    "inputs": {
+      "text1": "lineart,no shadows,pure white background",
+      "text2": [
+        "34",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "🔤 CR Text Concatenate"
+    }
+  },
+  "42": {
+    "inputs": {
+      "image": "https://pub.colorpages.net/output%20(1).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "45": {
+    "inputs": {
+      "method": "nearest-exact",
+      "image_1": [
+        "39",
+        0
+      ],
+      "image_2": [
+        "42",
+        0
+      ],
+      "image_3": [
+        "46",
+        0
+      ],
+      "image_4": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "ImageBatchMultiple+",
+    "_meta": {
+      "title": "🔧 Images Batch Multiple"
+    }
+  },
+  "46": {
+    "inputs": {
+      "image": "https://pub.colorpages.net/output%20(2).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "48": {
+    "inputs": {
+      "image": "https://pub.colorpages.net/output%20(3).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "50": {
+    "inputs": {
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "CM_NearestSDXLResolution",
+    "_meta": {
+      "title": "NearestSDXLResolution"
+    }
+  },
+  "51": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "lanczos",
+      "keep_proportion": false,
+      "divisible_by": 2,
+      "width_input": [
+        "50",
+        0
+      ],
+      "height_input": [
+        "50",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "Resize Image"
+    }
+  },
+  "76": {
+    "inputs": {
+      "text": [
+        "40",
+        0
+      ],
+      "text2": "lineart,no shadows,pure white background,1girl, solo, breasts, large_breasts, shirt, hat, navel, monochrome, short_sleeves, midriff, belt, pants, blurry, crop_top, helmet, baseball_cap, taut_shirt"
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "143": {
+    "inputs": {
+      "images": [
+        "176",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "166": {
+    "inputs": {
+      "ckpt_name": "DreamShaper_XL_v2_1_TurboDPMDER.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "加载检查点"
+    }
+  },
+  "167": {
+    "inputs": {
+      "width": [
+        "51",
+        1
+      ],
+      "height": [
+        "51",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空潜空间图像"
+    }
+  },
+  "169": {
+    "inputs": {
+      "text": [
+        "76",
+        0
+      ],
+      "clip": [
+        "166",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码（提示）"
+    }
+  },
+  "170": {
+    "inputs": {
+      "text": "nsfw, shadows,noise,lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name",
+      "clip": [
+        "166",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码（提示）"
+    }
+  },
+  "172": {
+    "inputs": {
+      "strength": 0.5,
+      "conditioning": [
+        "169",
+        0
+      ],
+      "control_net": [
+        "174",
+        0
+      ],
+      "image": [
+        "177",
+        0
+      ]
+    },
+    "class_type": "ControlNetApply",
+    "_meta": {
+      "title": "应用控制网（旧）"
+    }
+  },
+  "173": {
+    "inputs": {
+      "strength": 0.55,
+      "conditioning": [
+        "172",
+        0
+      ],
+      "control_net": [
+        "175",
+        0
+      ],
+      "image": [
+        "176",
+        0
+      ]
+    },
+    "class_type": "ControlNetApply",
+    "_meta": {
+      "title": "应用控制网（旧）"
+    }
+  },
+  "174": {
+    "inputs": {
+      "control_net_name": "diffusers_xl_canny_full.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "加载控制网模型"
+    }
+  },
+  "175": {
+    "inputs": {
+      "control_net_name": "diffusers_xl_depth_full.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "加载控制网模型"
+    }
+  },
+  "176": {
+    "inputs": {
+      "preprocessor": "DepthAnythingV2Preprocessor",
+      "resolution": 1024,
+      "image": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "AIO Aux Preprocessor"
+    }
+  },
+  "177": {
+    "inputs": {
+      "low_threshold": 100,
+      "high_threshold": 200,
+      "resolution": 1024,
+      "image": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny Edge"
+    }
+  },
+  "195": {
+    "inputs": {
+      "image": [
+        "51",
+        0
+      ]
+    },
+    "class_type": "ConvertGreyscaleNode",
+    "_meta": {
+      "title": "Convert Greyscale"
+    }
+  },
+  "197": {
+    "inputs": {
+      "images": [
+        "177",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "276": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  }
+}

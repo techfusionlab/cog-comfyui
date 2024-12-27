@@ -62,6 +62,8 @@ class Predictor(BasePredictor):
 
         # sampler = workflow["3"]["inputs"]
         # sampler["seed"] = kwargs["seed"]
+        image = workflow["12"]["inputs"]
+        image["image"] = kwargs["image_filename"]
         pass
 
     def predict(
@@ -88,7 +90,7 @@ class Predictor(BasePredictor):
         seed = seed_helper.generate(seed)
 
         image_filename = None
-        if image:
+        if image and not image.startswith("http"):
             image_filename = self.filename_with_extension(image, "image")
             self.handle_input_file(image, image_filename)
 
@@ -97,8 +99,8 @@ class Predictor(BasePredictor):
 
         self.update_workflow(
             workflow,
-            prompt=prompt,
-            negative_prompt=negative_prompt,
+            # prompt=prompt,
+            # negative_prompt=negative_prompt,
             image_filename=image_filename,
             seed=seed,
         )

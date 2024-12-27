@@ -88,7 +88,6 @@ class ComfyUI:
     def handle_weights(self, workflow, weights_to_download=None):
         if weights_to_download is None:
             weights_to_download = []
-
         print("Checking weights")
         embeddings = self.weights_downloader.get_weights_by_type("EMBEDDINGS")
         embedding_to_fullname = {emb.split(".")[0]: emb for emb in embeddings}
@@ -111,7 +110,8 @@ class ComfyUI:
         weights_to_download = list(set(weights_to_download))
 
         for weight in weights_to_download:
-            self.weights_downloader.download_weights(weight)
+            if weight != "DreamShaper_XL_v2_1_TurboDPMDER.safetensors":
+                self.weights_downloader.download_weights(weight)
 
         print("====================================")
 

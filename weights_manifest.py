@@ -141,6 +141,7 @@ class WeightsManifest:
 
     def non_commercial_weights(self):
         return [
+            "DreamShaper_XL_v2_1_TurboDPMDER.safetensors",
             "cocoamixxl_v4Stable.safetensors",
             "copaxTimelessxlSDXL1_v8.safetensors",
             "epicrealismXL_v10.safetensors",
