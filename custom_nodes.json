@@ -222,5 +222,9 @@
   {
     "repo": "https://github.com/kijai/ComfyUI-segment-anything-2",
     "commit": "059815e"
+  },
+  {
+    "repo": "https://github.com/ltdrdata/ComfyUI-Manager",
+    "commit": "df9ceb0"
   }
 ]
