@@ -1465,7 +1465,7 @@
         "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        "dreamshaperXL_sfwV2TurboDPMSDE.safetensors"
+        "DreamShaper_XL_v2_1_TurboDPMDER.safetensors"
       ]
     },
     {

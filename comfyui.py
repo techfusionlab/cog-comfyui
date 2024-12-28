@@ -88,32 +88,30 @@ class ComfyUI:
     def handle_weights(self, workflow, weights_to_download=None):
         if weights_to_download is None:
             weights_to_download = []
-        print("Checking weights")
         embeddings = self.weights_downloader.get_weights_by_type("EMBEDDINGS")
         embedding_to_fullname = {emb.split(".")[0]: emb for emb in embeddings}
         weights_filetypes = self.weights_downloader.supported_filetypes
-
         for node in workflow.values():
             self.apply_helper_methods("add_weights", weights_to_download, Node(node))
 
             for input in node["inputs"].values():
                 if isinstance(input, str):
                     if any(key in input for key in embedding_to_fullname):
-                        weights_to_download.extend(
+                        matched_embeddings = [
                             embedding_to_fullname[key]
                             for key in embedding_to_fullname
                             if key in input
-                        )
+                        ]
+                        weights_to_download.extend(matched_embeddings)
                     elif any(input.endswith(ft) for ft in weights_filetypes):
                         weights_to_download.append(input)
 
         weights_to_download = list(set(weights_to_download))
-
         for weight in weights_to_download:
-            if weight != "DreamShaper_XL_v2_1_TurboDPMDER.safetensors":
-                self.weights_downloader.download_weights(weight)
+            self.weights_downloader.download_weights(weight)
 
         print("====================================")
+        return
 
     def is_image_or_video_value(self, value):
         filetypes = [".png", ".jpg", ".jpeg", ".webp", ".mp4", ".webm"]

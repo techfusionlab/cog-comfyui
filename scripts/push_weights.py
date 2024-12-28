@@ -213,7 +213,7 @@ def upload_to_huggingface(local_file, subfolder):
         [
             "huggingface-cli",
             "upload",
-            "fofr/comfyui",
+            "wname/bak",
             local_file,
             f"{subfolder}/{local_file}",
         ]
@@ -368,14 +368,7 @@ def process_file(
             raise ValueError("Filename must be provided if URL is not specified")
         print(f"Processing {filename}")
         local_file = filename
-
-    if not no_upload:
-        tarred_file = tar_file(local_file)
-        upload_to_gcloud(tarred_file, "gs://replicate-weights/comfy-ui", subfolder)
-        if not no_hf_upload:
-            upload_to_huggingface(local_file, subfolder)
-        remove_files(local_file, tarred_file)
-
+    upload_to_huggingface(local_file, subfolder)
     update_weights_json(subfolder, local_file, url)
     subprocess.run(["python", "scripts/sort_weights.py"])
 

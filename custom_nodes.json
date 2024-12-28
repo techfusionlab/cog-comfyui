@@ -230,5 +230,9 @@
   {
     "repo": "https://github.com/aria1th/ComfyUI-LogicUtils",
     "commit": "a12b2e6"
+  },
+  {
+    "repo": "https://github.com/chflame163/ComfyUI_LayerStyle",
+    "commit": "b090d94"
   }
 ]

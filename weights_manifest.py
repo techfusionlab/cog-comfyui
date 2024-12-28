@@ -11,6 +11,7 @@ REMOTE_WEIGHTS_MANIFEST_PATH = "updated_weights.json"
 WEIGHTS_MANIFEST_PATH = "weights.json"
 BASE_URL = config["WEIGHTS_BASE_URL"]
 MODELS_PATH = config["MODELS_PATH"]
+USER_BASE_HF_PATH = config["USER_BASE_HF_PATH"]
 
 
 class WeightsManifest:
@@ -24,7 +25,6 @@ class WeightsManifest:
         )
         self.weights_manifest = self._load_weights_manifest()
         self.weights_map = self._initialize_weights_map()
-
     def _load_weights_manifest(self):
         if self.download_latest_weights_manifest:
             self._download_updated_weights_manifest()
@@ -87,7 +87,12 @@ class WeightsManifest:
         return original_manifest
 
     def _initialize_weights_map(self):
-        weights_map = {}
+        weights_map = {
+            "DreamShaper_XL_v2_1_TurboDPMDER.safetensors": {
+                "url": "https://huggingface.co/wname/bak/resolve/main/checkpoints/DreamShaper_XL_v2_1_TurboDPMDER.safetensors?download=true",
+                "dest": f"{MODELS_PATH}/checkpoints",
+            }
+        }
 
         def generate_weights_map(keys, directory_name):
             directory_name = (
@@ -119,13 +124,13 @@ class WeightsManifest:
 
         def update_weights_map(source_map):
             for k, v in source_map.items():
-                if k in weights_map:
+                if k not in weights_map:
+                    weights_map[k] = v
+                else:
                     if isinstance(weights_map[k], list):
                         weights_map[k].append(v)
                     else:
                         weights_map[k] = [weights_map[k], v]
-                else:
-                    weights_map[k] = v
 
         for key in self.weights_manifest.keys():
             map = generate_weights_map(self.weights_manifest[key], key)
@@ -136,12 +141,10 @@ class WeightsManifest:
             if hasattr(module, "weights_map"):
                 map = module.weights_map(BASE_URL)
                 update_weights_map(map)
-
         return weights_map
 
     def non_commercial_weights(self):
         return [
-            "DreamShaper_XL_v2_1_TurboDPMDER.safetensors",
             "cocoamixxl_v4Stable.safetensors",
             "copaxTimelessxlSDXL1_v8.safetensors",
             "epicrealismXL_v10.safetensors",

@@ -69,9 +69,23 @@ class WeightsDownloader:
 
         print(f"⏳ Downloading {weight_str} to {dest}")
         start = time.time()
-        subprocess.check_call(
-            ["pget", "--log-level", "warn", "-xf", url, dest], close_fds=False
-        )
+        
+        # 检查是否是压缩文件
+        is_archive = url.endswith(('.tar', '.zip', '.gz', '.7z'))
+        
+        if is_archive:
+            # 如果是压缩文件，使用 -xf 参数解压
+            subprocess.check_call(
+                ["pget", "--log-level", "warn", "-xf", url, dest], 
+                close_fds=False
+            )
+        else:
+            # 如果不是压缩文件，直接下载
+            subprocess.check_call(
+                ["pget", "--log-level", "warn", "-f", url, dest], 
+                close_fds=False
+            )
+
         elapsed_time = time.time() - start
         try:
             file_size_bytes = os.path.getsize(

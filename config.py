@@ -4,4 +4,5 @@ config = {
     "MODELS_PATH": "ComfyUI/models",
     "USER_WEIGHTS_PATH": "downloaded_user_models",
     "USER_WEIGHTS_MANIFEST_PATH": "downloaded_user_models/weights.json",
+    "USER_BASE_HF_PATH": "hf_user_models",
 }

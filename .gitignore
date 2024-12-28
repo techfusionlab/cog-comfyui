@@ -17,3 +17,4 @@ updated_weights.json
 downloaded_user_models/
 .cog
 *.log
+.env

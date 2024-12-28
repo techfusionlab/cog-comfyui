@@ -28,16 +28,20 @@ os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
 
 class Predictor(BasePredictor):
     def setup(self):
+        print("\n=== 开始初始化 ===")
+        print("1. 创建ComfyUI实例...")
         self.comfyUI = ComfyUI("127.0.0.1:8188")
+        
+        print("2. 启动服务器...")
         self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
 
-        # Give a list of weights filenames to download during setup
+        print("3. 加载工作流配置...")
         with open(api_json_file, "r") as file:
             workflow = json.loads(file.read())
-        self.comfyUI.handle_weights(
-            workflow,
-            weights_to_download=[],
-        )
+            print(f"工作流节点数量: {len(workflow)}")
+        
+        print("4. 开始处理权重...")
+        self.comfyUI.handle_weights(workflow, weights_to_download=[])
 
     def filename_with_extension(self, input_file, prefix):
         extension = os.path.splitext(input_file.name)[1]
@@ -68,13 +72,6 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        prompt: str = Input(
-            default="",
-        ),
-        negative_prompt: str = Input(
-            description="Things you do not want to see in your image",
-            default="",
-        ),
         image: Path = Input(
             description="An input image",
             default=None,
@@ -89,18 +86,14 @@ class Predictor(BasePredictor):
         # Make sure to set the seeds in your workflow
         seed = seed_helper.generate(seed)
 
-        image_filename = None
-        if image and not image.startswith("http"):
-            image_filename = self.filename_with_extension(image, "image")
-            self.handle_input_file(image, image_filename)
+        image_filename = self.filename_with_extension(image, "image")
+        self.handle_input_file(image, image_filename)
 
         with open(api_json_file, "r") as file:
             workflow = json.loads(file.read())
 
         self.update_workflow(
             workflow,
-            # prompt=prompt,
-            # negative_prompt=negative_prompt,
             image_filename=image_filename,
             seed=seed,
         )
